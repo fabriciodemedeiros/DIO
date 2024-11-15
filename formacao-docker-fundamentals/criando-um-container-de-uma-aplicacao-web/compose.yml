@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Serviço para o Apache com PHP
+  web:
+    image: php:8.1-apache  # Imagem oficial do PHP com Apache
+    container_name: apache_php
+    ports:
+      - "80:80"  # Mapeia a porta 80 para o Apache (localhost:80)
+    volumes:
+      - ./src:/var/www/html  # Sincroniza o diretório local com o /var/www/html do Apache
+      - ./php.ini:/usr/local/etc/php/php.ini  # Carrega um arquivo de configuração customizado do PHP
+    depends_on:
+      - db  # Define dependência para o serviço de banco de dados
+
+  # Serviço para o MySQL
+  db:
+    image: mysql:8.0  # Imagem oficial do MySQL
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Senha do usuário root
+      MYSQL_DATABASE: mydatabase  # Nome do banco de dados
+      MYSQL_USER: user  # Usuário do banco de dados
+      MYSQL_PASSWORD: password  # Senha do usuário do banco de dados
+    volumes:
+      - db_data:/var/lib/mysql  # Volume para persistir os dados do MySQL
+    ports:
+      - "3306:3306"  # Porta para acessar o MySQL, caso precise de acesso externo
+
+  # Serviço para o phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin:latest  # Imagem oficial do phpMyAdmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db  # Nome do serviço de banco de dados definido no Compose
+      MYSQL_ROOT_PASSWORD: rootpassword  # Senha do MySQL para o phpMyAdmin
+    ports:
+      - "8080:80"  # Mapeia a porta 8080 para acessar o phpMyAdmin (localhost:8080)
+    depends_on:
+      - db
+
+volumes:
+  db_data:  # Volume para persistir os dados do banco de dados MySQL
