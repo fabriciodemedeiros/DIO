@@ -74,7 +74,7 @@ Instalando Instagram no iPhone...
 
 Desenvolvido por **Fabrício de Medeiros** como parte da formação na plataforma [Digital Innovation One](https://dio.me).
 
-- 💼 [LinkedIn](https://www.linkedin.com/in/fabriciodemedeiros)  
+- 💼 [LinkedIn]([https://www.linkedin.com/in/fabriciodemedeiros](https://www.linkedin.com/in/fabricio-de-medeiros/))  
 - 🧑‍💻 [GitHub](https://github.com/fabriciodemedeiros)  
 - 🌐 [Website](https://fasil.criarsite.online)  
 - ✉️ E-mail: [gannba@hotmail.com](mailto:gannba@hotmail.com)
